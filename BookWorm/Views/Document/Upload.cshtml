@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+}
+<div class="row">
+    <div class=" col-md-12">
+        <h2>Upload File</h2>
+    </div>
+</div>
+
+<div id="UploadNewFile">
+    @Html.Action("Create", new { id = ViewBag.id})
+</div>
+
+<div id="UploadsPartialView">
+    @Html.Action("UploadsPartialView", new { id = Url.RequestContext.RouteData.Values["id"]})
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-12">
+            <hr />
+            <div>
+                @Html.ActionLink("Home", "Index", "HomeController")
+            </div>
+        </div>
+        <div>
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryunobtrusive") @*For unobtrusive-ajax*@
+                @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            }
+        </div>
+    </div>
+</div>
+

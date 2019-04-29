@@ -17,6 +17,6 @@ namespace BookWorm.Models
         public string DExcerpt { get; set; }
         [Key]
         public Upload Uploads { get; set; }
-        public HttpPostedFile ImageFile { get; set; }
+        //public HttpPostedFile ImageFile { get; set; }
     }
 }

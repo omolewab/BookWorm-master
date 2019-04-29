@@ -1,0 +1,21 @@
+﻿@model BookWorm.Models.Upload
+
+
+@*This is the Upload File Partial View*@
+
+@using (Html.BeginForm("UploadsPartialView", "Document", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+  <div class=" form-horizontal">
+      <hr />
+      <h4>Upload File</h4>
+      @Html.HiddenFor(model => model.Id)
+      <div class="form-group">
+          <label for="file">Upload Document:</label>
+          <input type="file" name="file" id="file" /><br />
+          <input type="submit" value="Upload Document" />
+          <div class="col-md-10">
+          </div>
+      </div>
+  </div>
+}

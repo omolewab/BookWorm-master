@@ -10,12 +10,12 @@ namespace BookWorm.ViewModels
     public class NewDocumentViewModel
     {
         [Required]
-        public string DName { get; set; }
+        public string Name { get; set; }
         [Required]
-        public string DAuthor { get; set; }
-        public int DFormatId { get; set; }
+        public string Author { get; set; }
+        public int FormatId { get; set; }
         public IEnumerable<DFormat> DFormats { get; set; }
-        public string DExcerpt { get; set; }
+        public string Excerpt { get; set; }
         public int BookTypeId { get; set; }
         public IEnumerable<BookType> BookTypes { get; set; }
         public int UploadId { get; set; }
