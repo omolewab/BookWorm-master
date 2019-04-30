@@ -1,0 +1,11 @@
+﻿@model BookWorm.Controllers.HomeController
+
+<h3>@ViewBag.Message</h3>
+<br />
+
+
+<form id="frmsearch" action="~/Catalog/Search" method="get">
+    <input id="q" name="q" placeholder="Title/Author/Genre" style="width:275px;" />
+    <input id="submit" name="submit" type="submit" style="font-weight:bold;" value="Search" />
+</form>
+

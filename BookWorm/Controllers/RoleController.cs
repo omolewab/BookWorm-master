@@ -9,12 +9,15 @@ using System.Web.Mvc;
 
 namespace BookWorm.Controllers
 {
+    [Authorize]
     public class RoleController : Controller
     {
         private ApplicationRoleManager _roleManager;
+        BookWormContext context;
 
         public RoleController()
         {
+            context = new BookWormContext();
         }
 
         public RoleController(ApplicationRoleManager roleManager)

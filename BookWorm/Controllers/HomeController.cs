@@ -13,18 +13,28 @@ namespace BookWorm.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Category()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Search and Browse Documents";
 
             return View();
         }
-
-        public ActionResult Contact()
+        public ActionResult MyList()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
+        }
+
+        public ActionResult Upload(int Id)
+        {
+            return View();
+        }
+
+        public ActionResult Search(string q)
+        {
+            //q = "few random words" (no need to remove '+' signs) 
+            var model = q;
+
+            return View(model);
         }
     }
 }

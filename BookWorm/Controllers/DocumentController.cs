@@ -2,6 +2,7 @@
 using BookWorm.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,11 @@ namespace BookWorm.Controllers
             _context = new BookWormContext();
         }
         [Authorize]
+        public ActionResult Upload ()
+        {
+            return View();
+        }
+        [Authorize]
         // GET: Document
         public ActionResult Create()
         {
@@ -27,7 +33,7 @@ namespace BookWorm.Controllers
                 BookTypes = _context.BookTypes.ToList()
             };
             return View(model);
-    }
+        }
 
         [Authorize]
         [HttpPost]
@@ -68,64 +74,50 @@ namespace BookWorm.Controllers
         }
         public ActionResult UploadsPartialView()
         {
-            return View(new ImageViewModel());
+            return PartialView();
         }
         [HttpPost]
-        public ActionResult UploadsPartialView(ImageViewModel file)
+        public ActionResult UploadsPartialView(HttpPostedFile file)
         {
+
+            if (file != null && file.ContentLength > 0)
+                try
+                {
+                    string path = Path.Combine(Server.MapPath("~/Uploads"),
+                                               Path.GetFileName(file.FileName));
+                    file.SaveAs(path);
+                    ViewBag.Message = "File uploaded successfully";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                }
+            
+            else
             {
-                var validImageTypes = new string[]
-                {
-                  "image/gif",
-                  "image/jpeg",
-                  "image/pjpeg",
-                  "image/png"
-                }
-
-    if (file.ImageUpload == null || file.ImageUpload.ContentLength == 0)
-                {
-                    ModelState.AddModelError("ImageUpload", "This field is required");
-                }
-                else if (!imageTypes.Contains(file.ImageUpload.ContentType))
-                {
-                    ModelState.AddModelError("ImageUpload", "Please choose either a GIF, JPG or PNG image.
-                }
-
-               
-        if (model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
-                    {
-                        var uploadDir = "~/uploads"
-            var imagePath = Path.Combine(Server.MapPath(uploadDir), model.ImageUpload.FileName);
-                        var imageUrl = Path.Combine(uploadDir, model.ImageUpload.FileName);
-                        model.ImageUpload.SaveAs(imagePath);
-                        image.ImageUrl = imageUrl;
-                    }
-
-                    db.Create(image);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-
-                return View(model);
+                ViewBag.Message = "You have not specified a file.";
             }
+            return View();
 
-            //if (ModelState.IsValid)
-            //{
-            //    if (file.File != null && file.File.ContentLength > 0 && file.File.ContentType == "application/pdf")
-            //    {
-            //        // Convert file to byte[] and upload
-            //        // ...
-            //        ViewBag.Message = "File Uploaded Successfully";
-            //    }
-            //    else
-            //    {
-            //        ViewBag.Message = "File Not Uploaded";
-            //    }
-            //}
-
-            //return View();
         }
+
+        //if (ModelState.IsValid)
+        //{
+        //    if (file.File != null && file.File.ContentLength > 0 && file.File.ContentType == "application/pdf")
+        //    {
+        //        // Convert file to byte[] and upload
+        //        // ...
+        //        ViewBag.Message = "File Uploaded Successfully";
+        //    }
+        //    else
+        //    {
+        //        ViewBag.Message = "File Not Uploaded";
+        //    }
+        //}
+
+        //return View();
     }
+
 }
 
 //   try
@@ -141,4 +133,39 @@ namespace BookWorm.Controllers
 //            else
 //            {
 //                ViewBag.Message = "You have not specified a file.";
+//            if (file != null && file.ContentLength > 0)
+//                try
+//                {
+//                    string path = Path.Combine(Server.MapPath("~/Uploads"), Path.GetFileName(file.FileName));
+//file.SaveAs(path);
+//                    ViewBag.Message = "File uploaded successfully";
+//                }
+//                catch (Exception ex)
+//                {
+//                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+//                }
+//            else
+//            {
+//                ViewBag.Message = "You have not specified a file.";
 //            }
+//            return View();  }
+// Initialization.  
+//FileViewModel model = new FileViewModel { FileAttach = null, Uploads = new List<Upload>() };
+
+//            try
+//            {
+//                // Settings.  
+//                model.Uploads = this._context.Uploads.Select(p => new Upload
+//                {
+//                    Id = p.Id,
+//                    ImageName = p.ImageName,
+//                    ImagePath = p.ImagePath
+//                }).ToList();
+//            }
+//            catch (Exception ex)
+//            {
+//                // Info  
+//                Console.Write(ex);
+//            }
+
+//            // Info. 
