@@ -32,7 +32,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FormatId, "Document Format")
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.FormatId, new SelectList(Model.DFormats, "Id", "FileFormat"), "", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.FormatId, new SelectList(Model.Formats, "Id", "FileFormat"), "", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.FormatId)
             </div>
         </div>
@@ -46,10 +46,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BookTypeId, "Book Type")
+            @Html.LabelFor(model => model.CategoriesId, "Book Type")
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.BookTypeId, new SelectList(Model.BookTypes, "Id", "Genre"), "", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.BookTypeId)
+                @Html.DropDownListFor(model => model.CategoriesId, new SelectList(Model.Categories, "Id", "Genre"), "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoriesId)
             </div>
         </div>
         <div class="form-group">

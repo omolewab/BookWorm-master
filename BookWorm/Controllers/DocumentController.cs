@@ -29,8 +29,8 @@ namespace BookWorm.Controllers
         {
             var model = new NewDocumentViewModel
             {
-                DFormats = _context.DFormats.ToList(),
-                BookTypes = _context.BookTypes.ToList()
+                Formats = _context.Formats.ToList(),
+                Categories = _context.Categories.ToList()
             };
             return View(model);
         }
@@ -42,28 +42,28 @@ namespace BookWorm.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.DFormats = _context.DFormats.ToList();
+                viewModel.Formats = _context.Formats.ToList();
                 return View("Create", viewModel);
             }
             if (!ModelState.IsValid)
             { 
 
-                viewModel.BookTypes = _context.BookTypes.ToList();
+                viewModel.Categories = _context.Categories.ToList();
                 return View("Create", viewModel);
             }
 
-            var DFormat = _context.DFormats.Single(t => t.Id == viewModel.FormatId);
-            var BookType = _context.BookTypes.Single(t => t.Id == viewModel.BookTypeId);
+            var Format = _context.Formats.Single(t => t.Id == viewModel.FormatId);
+            var Categories = _context.Categories.Single(t => t.Id == viewModel.CategoriesId);
 
 
 
             var document = new Documents
             {
-                DName = viewModel.Name,
-                DAuthor = viewModel.Author,
-                DExcerpt = viewModel.Excerpt,
-                DFormat = DFormat,
-                BookType = BookType
+                Name = viewModel.Name,
+                Author = viewModel.Author,
+                Excerpt = viewModel.Excerpt,
+                Format = Format,
+                Categories = Categories
             };
 
 
@@ -101,71 +101,8 @@ namespace BookWorm.Controllers
 
         }
 
-        //if (ModelState.IsValid)
-        //{
-        //    if (file.File != null && file.File.ContentLength > 0 && file.File.ContentType == "application/pdf")
-        //    {
-        //        // Convert file to byte[] and upload
-        //        // ...
-        //        ViewBag.Message = "File Uploaded Successfully";
-        //    }
-        //    else
-        //    {
-        //        ViewBag.Message = "File Not Uploaded";
-        //    }
-        //}
-
-        //return View();
+      
     }
 
 }
 
-//   try
-//                {
-//                    string path = Path.Combine(Server.MapPath("~/Uploads"), Path.GetFileName(file.FileName));
-//file.SaveAs(path);
-//                    ViewBag.Message = "File uploaded successfully";
-//                }
-//                catch (Exception ex)
-//                {
-//                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
-//                }
-//            else
-//            {
-//                ViewBag.Message = "You have not specified a file.";
-//            if (file != null && file.ContentLength > 0)
-//                try
-//                {
-//                    string path = Path.Combine(Server.MapPath("~/Uploads"), Path.GetFileName(file.FileName));
-//file.SaveAs(path);
-//                    ViewBag.Message = "File uploaded successfully";
-//                }
-//                catch (Exception ex)
-//                {
-//                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
-//                }
-//            else
-//            {
-//                ViewBag.Message = "You have not specified a file.";
-//            }
-//            return View();  }
-// Initialization.  
-//FileViewModel model = new FileViewModel { FileAttach = null, Uploads = new List<Upload>() };
-
-//            try
-//            {
-//                // Settings.  
-//                model.Uploads = this._context.Uploads.Select(p => new Upload
-//                {
-//                    Id = p.Id,
-//                    ImageName = p.ImageName,
-//                    ImagePath = p.ImagePath
-//                }).ToList();
-//            }
-//            catch (Exception ex)
-//            {
-//                // Info  
-//                Console.Write(ex);
-//            }
-
-//            // Info. 

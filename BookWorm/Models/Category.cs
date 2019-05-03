@@ -1,8 +1,8 @@
 ﻿namespace BookWorm.Models
 {
-    public class BookType
+    public class Category
     {
         public byte Id { get; set; }
-        public string Genre { get; set; }
+        public string Categories { get; set; }
     }
 }

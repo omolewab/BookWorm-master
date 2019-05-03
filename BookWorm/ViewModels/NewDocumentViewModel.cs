@@ -14,10 +14,10 @@ namespace BookWorm.ViewModels
         [Required]
         public string Author { get; set; }
         public int FormatId { get; set; }
-        public IEnumerable<DFormat> DFormats { get; set; }
+        public IEnumerable<Format> Formats { get; set; }
         public string Excerpt { get; set; }
-        public int BookTypeId { get; set; }
-        public IEnumerable<BookType> BookTypes { get; set; }
+        public int CategoriesId { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
         public int UploadId { get; set; }
         public HttpPostedFile ImageFile { get; set; }
 

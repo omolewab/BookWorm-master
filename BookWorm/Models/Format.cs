@@ -1,6 +1,6 @@
 ﻿namespace BookWorm.Models
 {
-    public class DFormat
+    public class Format
     {
         public int Id { get; set; }
         public string FileFormat { get; set; }
