@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BookWorm.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BookWorm.Controllers
 {
@@ -147,6 +148,7 @@ namespace BookWorm.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        //[Authorize(Roles ="Admin")]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -163,16 +165,39 @@ namespace BookWorm.Controllers
                     
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
+               
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    var IsAdmin = await UserManager.IsInRoleAsync(user.Id, "Admin");
                     
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    using (var context = new BookWormContext())
+                    {
+
+                        var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+                        //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+                        var role = context.Roles.SingleOrDefault(r => r.Name == "Admin");
+                        var usersInRole = role.Users;
+                        var AdminList = roleManager.FindByName("Admin");
+                        if (usersInRole.Count <= 0) 
+                        {
+                            //meaning no admin yet... then register the user as an admin
+                            await UserManager.AddToRoleAsync(user.Id, "Admin");
+                        }
+                        else
+                        {
+                            //admin space occupied.. register as "Registered User"
+                            await UserManager.AddToRoleAsync(user.Id, "Registered");
+                        }
+                    }
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

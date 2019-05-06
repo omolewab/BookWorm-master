@@ -19,6 +19,7 @@ namespace BookWorm.Controllers
             _context = new BookWormContext();
         }
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Upload ()
         {
             return View();
@@ -38,6 +39,7 @@ namespace BookWorm.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(NewDocumentViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -72,6 +74,7 @@ namespace BookWorm.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult UploadsPartialView()
         {
             return PartialView();
@@ -97,10 +100,11 @@ namespace BookWorm.Controllers
             {
                 ViewBag.Message = "You have not specified a file.";
             }
+
             return View();
 
         }
-
+        
       
     }
 
