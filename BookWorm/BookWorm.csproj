@@ -49,6 +49,18 @@
     <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
       <HintPath>..\packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
     </Reference>
+    <Reference Include="CSS.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSS.NET.1.0.2\lib\net461\CSS.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="CSSParser, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CssParser.1.3.0\lib\CSSParser.dll</HintPath>
+    </Reference>
+    <Reference Include="CSSParser.ExtendedLESSParser, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CssParser.1.3.0\lib\CSSParser.ExtendedLESSParser.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicExpresso.Core, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicExpresso.Core.2.1.0\lib\net461\DynamicExpresso.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -221,12 +233,80 @@
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Theme\blog.html" />
+    <Content Include="Content\Theme\contactform\contactform.js" />
+    <Content Include="Content\Theme\contactform\Readme.txt" />
+    <Content Include="Content\Theme\contacts.html" />
+    <Content Include="Content\Theme\css\animate.css" />
+    <Content Include="Content\Theme\css\animate.min.css" />
+    <Content Include="Content\Theme\css\bootstrap-theme.css" />
+    <Content Include="Content\Theme\css\bootstrap-theme.min.css" />
+    <Content Include="Content\Theme\css\bootstrap.css" />
+    <Content Include="Content\Theme\css\bootstrap.min.css" />
+    <Content Include="Content\Theme\css\flexslider.css" />
+    <Content Include="Content\Theme\css\font-awesome.css" />
+    <Content Include="Content\Theme\css\font-awesome.min.css" />
+    <Content Include="Content\Theme\css\magnific-popup.css" />
+    <Content Include="Content\Theme\css\overwrite.css" />
+    <Content Include="Content\Theme\css\responsive-slider.css" />
+    <Content Include="Content\Theme\css\style.css" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Theme\img\1.jpg" />
+    <Content Include="Content\Theme\img\10.jpg" />
+    <Content Include="Content\Theme\img\11.jpg" />
+    <Content Include="Content\Theme\img\12.jpg" />
+    <Content Include="Content\Theme\img\13.jpg" />
+    <Content Include="Content\Theme\img\15.jpg" />
+    <Content Include="Content\Theme\img\16.jpg" />
+    <Content Include="Content\Theme\img\2.jpg" />
+    <Content Include="Content\Theme\img\20.jpg" />
+    <Content Include="Content\Theme\img\21.jpg" />
+    <Content Include="Content\Theme\img\22.jpg" />
+    <Content Include="Content\Theme\img\23.jpg" />
+    <Content Include="Content\Theme\img\2a.jpg" />
+    <Content Include="Content\Theme\img\3.jpg" />
+    <Content Include="Content\Theme\img\4.jpg" />
+    <Content Include="Content\Theme\img\5.jpg" />
+    <Content Include="Content\Theme\img\a.jpg" />
+    <Content Include="Content\Theme\img\b.jpg" />
+    <Content Include="Content\Theme\img\c.jpg" />
+    <Content Include="Content\Theme\img\portfolio\1.jpg" />
+    <Content Include="Content\Theme\img\portfolio\10.jpg" />
+    <Content Include="Content\Theme\img\portfolio\11.jpg" />
+    <Content Include="Content\Theme\img\portfolio\12.jpg" />
+    <Content Include="Content\Theme\img\portfolio\2.jpg" />
+    <Content Include="Content\Theme\img\portfolio\3.jpg" />
+    <Content Include="Content\Theme\img\portfolio\4.jpg" />
+    <Content Include="Content\Theme\img\portfolio\5.jpg" />
+    <Content Include="Content\Theme\img\portfolio\6.jpg" />
+    <Content Include="Content\Theme\img\portfolio\7.jpg" />
+    <Content Include="Content\Theme\img\portfolio\8.jpg" />
+    <Content Include="Content\Theme\img\portfolio\9.jpg" />
+    <Content Include="Content\Theme\img\team\3.jpg" />
+    <Content Include="Content\Theme\img\team\members1.jpg" />
+    <Content Include="Content\Theme\img\team\members3.jpg" />
+    <Content Include="Content\Theme\index.html" />
+    <Content Include="Content\Theme\js\bootstrap.js" />
+    <Content Include="Content\Theme\js\bootstrap.min.js" />
+    <Content Include="Content\Theme\js\functions.js" />
+    <Content Include="Content\Theme\js\jquery.flexslider.min.js" />
+    <Content Include="Content\Theme\js\jquery.js" />
+    <Content Include="Content\Theme\js\jquery.magnific-popup.js" />
+    <Content Include="Content\Theme\js\jquery.magnific-popup.min.js" />
+    <Content Include="Content\Theme\js\npm.js" />
+    <Content Include="Content\Theme\js\responsive-slider.js" />
+    <Content Include="Content\Theme\js\responsive-slider.min.js" />
+    <Content Include="Content\Theme\js\wow.min.js" />
+    <Content Include="Content\Theme\portfolio.html" />
+    <Content Include="Content\Theme\readme.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -256,6 +336,15 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\Theme\css\bootstrap-theme.css.map" />
+    <Content Include="Content\Theme\css\bootstrap.css.map" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Theme\fonts\FontAwesome.otf" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -274,6 +363,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Views\Document\Upload.cshtml" />
+    <Content Include="Views\Document\UploadsPartialView.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -286,7 +376,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\My_Layout.cshtml" />
     <Content Include="Views\Home\MyList.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -325,6 +415,8 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Document\Create.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\MyHome\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
 
 namespace BookWorm.Models
 {
@@ -7,6 +8,7 @@ namespace BookWorm.Models
         public byte Id { get; set; }
         public string ImagePath { get; set; }
         public string ImageName { get; set; }
+        [NotMapped]
         public HttpPostedFileBase ImageFile { get; set; }
         }
 
