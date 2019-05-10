@@ -416,11 +416,11 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Document\Create.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\MyHome\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Roles\" />
+    <Folder Include="Views\MyHome\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
