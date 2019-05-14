@@ -5,7 +5,7 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm("Create", "Document", FormMethod.Post))
+@using (Html.BeginForm("Create", "Document", FormMethod.Post, new { enctype ="multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
 
@@ -14,7 +14,7 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Name , htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -30,9 +30,9 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.FormatId, "Document Format")
+        @Html.LabelFor(model => model.FormatId, "Format", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.FormatId, new SelectList(Model.Formats, "Id", "FileFormat"), "", new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.FormatId, ViewBag.formats as SelectList ,htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.FormatId)
         </div>
     </div>
@@ -46,12 +46,22 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.CategoriesId, "Book Type")
+        @Html.LabelFor(model => model.CategoryId, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.CategoriesId, new SelectList(Model.Categories, "Id", "Genre"), "", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.CategoriesId)
+            @Html.DropDownListFor(model => model.CategoryId, ViewBag.categories as SelectList, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CategoryId)
         </div>
     </div>
+    <div class=" form-horizontal">
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagePath,"Upload Document", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="docs" value="Select File" id="docs" /><br />
+            </div>
+        </div>
+    </div>
+
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

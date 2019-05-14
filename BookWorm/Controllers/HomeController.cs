@@ -24,7 +24,7 @@ namespace BookWorm.Controllers
             return View();
         }
 
-        public ActionResult Upload(int Id)
+        public ActionResult Upload()
         {
             return View();
         }

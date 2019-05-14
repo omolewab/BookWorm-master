@@ -27,33 +27,45 @@ namespace BookWorm.Controllers
         // GET: Document
         public ActionResult Create()
         {
-            var model = new NewDocumentViewModel
-            {
-                Formats = _context.Formats.ToList(),
-                Categories = _context.Categories.ToList()
-            };
-            return View(model);
+           
+            List<Format> formats = _context.Formats.ToList();
+            SelectList formatList = new SelectList(formats,"Id","FileFormat");
+            ViewBag.formats = formatList;
+         
+
+            List<Category> categories = _context.Categories.ToList();
+            SelectList categoryList = new SelectList(categories, "Id", "Categories");
+            ViewBag.categories = categoryList;
+
+
+
+            return View(new NewDocumentViewModel());
         }
 
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(NewDocumentViewModel viewModel)
+        public ActionResult Create(NewDocumentViewModel viewModel, List<HttpPostedFileBase> docs)
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Formats = _context.Formats.ToList();
-                return View("Create", viewModel);
-            }
-            if (!ModelState.IsValid)
-            { 
+                List<Format> formats = _context.Formats.ToList();
+                SelectList formatList = new SelectList(formats, "Id", "FileFormat");
+                ViewBag.formats = formatList;
 
-                viewModel.Categories = _context.Categories.ToList();
+
+                List<Category> categories = _context.Categories.ToList();
+                SelectList categoryList = new SelectList(categories, "Id", "Categories");
+                ViewBag.categories = categoryList;
+               
                 return View("Create", viewModel);
             }
+
+           
+
 
             var Format = _context.Formats.Single(t => t.Id == viewModel.FormatId);
-            var Categories = _context.Categories.Single(t => t.Id == viewModel.CategoriesId);
+            var Category = _context.Categories.Single(c => c.Id == viewModel.CategoryId);
 
 
 
@@ -63,8 +75,35 @@ namespace BookWorm.Controllers
                 Author = viewModel.Author,
                 Excerpt = viewModel.Excerpt,
                 Format = Format,
-                Categories = Categories
+                Category = Category,
+                Uploads = new Upload
+                {
+                    ImageName = viewModel.ImageName,
+                    ImagePath = viewModel.ImagePath
+                }
+                
             };
+
+            foreach (var file in docs)
+            {
+                if (file != null && file.ContentLength > 0)
+                    try
+                    {
+                        string path = Path.Combine(Server.MapPath("~/Uploads"),
+                                                   Path.GetFileName(file.FileName));
+                        file.SaveAs(path);
+                        ViewBag.Message = "File uploaded successfully";
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    }
+
+                else
+                {
+                    ViewBag.Message = "You have not specified a file.";
+                }
+            }
 
 
 
@@ -76,29 +115,13 @@ namespace BookWorm.Controllers
 
         public ActionResult UploadsPartialView()
         {
-            return PartialView();
+            return PartialView("UploadsPartialView");
         }
         [HttpPost]
-        public ActionResult UploadsPartialView(HttpPostedFile file)
+        public ActionResult UploadsPartialView(List<HttpPostedFileBase> docs)
         {
-
-            if (file != null && file.ContentLength > 0)
-                try
-                {
-                    string path = Path.Combine(Server.MapPath("~/Uploads"),
-                                               Path.GetFileName(file.FileName));
-                    file.SaveAs(path);
-                    ViewBag.Message = "File uploaded successfully";
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
-                }
-            
-            else
-            {
-                ViewBag.Message = "You have not specified a file.";
-            }
+            //var file = docs.FirstOrDefault();
+           
 
             return View();
 
@@ -109,3 +132,16 @@ namespace BookWorm.Controllers
 
 }
 
+//if (!ModelState.IsValid)
+//{
+
+//    viewModel.Categories = _context.Categories.ToList();
+//    return View("Create", viewModel);
+//}
+
+//var model = new NewDocumentViewModel();
+//{
+//    Formats = _context.Formats.ToList(),
+//    Categories = _context.Categories.ToList()
+//};
+//permit a shortcut

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BookWorm.Models
 {
@@ -12,10 +8,10 @@ namespace BookWorm.Models
         public string Name { get; set; }
         public string Author { get; set; }
         public Format Format { get; set; }
-        [Key]
-        public Category Categories { get; set; }
+        public Category Category { get; set; }
         public string Excerpt { get; set; }
-        [Key]
         public Upload Uploads { get; set; }
+        //public string ImageName { get; set; }
+        //public  string ImagePath { get; set; }
     }
 }

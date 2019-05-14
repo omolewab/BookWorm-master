@@ -212,9 +212,9 @@
     <Compile Include="Migrations\201904171347297_PopulateDFormatTable.Designer.cs">
       <DependentUpon>201904171347297_PopulateDFormatTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904231321554_PopulateBookTypesTable1.cs" />
-    <Compile Include="Migrations\201904231321554_PopulateBookTypesTable1.Designer.cs">
-      <DependentUpon>201904231321554_PopulateBookTypesTable1.cs</DependentUpon>
+    <Compile Include="Migrations\201905130912234_PopulateCategoriesTable.cs" />
+    <Compile Include="Migrations\201905130912234_PopulateCategoriesTable.Designer.cs">
+      <DependentUpon>201905130912234_PopulateCategoriesTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -363,7 +363,6 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Views\Document\Upload.cshtml" />
-    <Content Include="Views\Document\UploadsPartialView.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -446,8 +445,8 @@
     <EmbeddedResource Include="Migrations\201904171347297_PopulateDFormatTable.resx">
       <DependentUpon>201904171347297_PopulateDFormatTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904231321554_PopulateBookTypesTable1.resx">
-      <DependentUpon>201904231321554_PopulateBookTypesTable1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905130912234_PopulateCategoriesTable.resx">
+      <DependentUpon>201905130912234_PopulateCategoriesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
