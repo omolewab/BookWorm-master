@@ -7,13 +7,13 @@ namespace BookWorm.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CreateDocumentsTable1 : IMigrationMetadata
+    public sealed partial class PopulateFormatsTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateDocumentsTable1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateFormatsTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904111236000_CreateDocumentsTable1"; }
+            get { return "201905161213539_PopulateFormatsTable"; }
         }
         
         string IMigrationMetadata.Source

@@ -7,13 +7,13 @@ namespace BookWorm.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class role : IMigrationMetadata
+    public sealed partial class PopulateAspNetRolesTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(role));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateAspNetRolesTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904160925251_role"; }
+            get { return "201905161209482_PopulateAspNetRolesTable"; }
         }
         
         string IMigrationMetadata.Source

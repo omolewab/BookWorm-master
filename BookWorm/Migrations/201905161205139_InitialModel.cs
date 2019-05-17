@@ -8,11 +8,60 @@ namespace BookWorm.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.Categories",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Categories = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Documents",
+                c => new
+                    {
+                        DocumentsID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Excerpt = c.String(),
+                        Author = c.String(),
+                        FormatID = c.Int(nullable: false),
+                        CategoryID = c.Int(nullable: false),
+                        UploadID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.DocumentsID)
+                .ForeignKey("dbo.Categories", t => t.CategoryID, cascadeDelete: true)
+                .ForeignKey("dbo.Formats", t => t.FormatID, cascadeDelete: true)
+                .ForeignKey("dbo.Uploads", t => t.UploadID, cascadeDelete: true)
+                .Index(t => t.FormatID)
+                .Index(t => t.CategoryID)
+                .Index(t => t.UploadID);
+            
+            CreateTable(
+                "dbo.Formats",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        FileFormat = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Uploads",
+                c => new
+                    {
+                        UploadID = c.Int(nullable: false, identity: true),
+                        ImagePath = c.String(),
+                        ImageName = c.String(),
+                    })
+                .PrimaryKey(t => t.UploadID);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(nullable: false, maxLength: 256),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
@@ -35,6 +84,10 @@ namespace BookWorm.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(nullable: false, maxLength: 255),
+                        LastName = c.String(nullable: false, maxLength: 255),
+                        Age = c.Int(nullable: false),
+                        HomeAddress = c.String(nullable: false, maxLength: 255),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -83,17 +136,27 @@ namespace BookWorm.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Documents", "UploadID", "dbo.Uploads");
+            DropForeignKey("dbo.Documents", "FormatID", "dbo.Formats");
+            DropForeignKey("dbo.Documents", "CategoryID", "dbo.Categories");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Documents", new[] { "UploadID" });
+            DropIndex("dbo.Documents", new[] { "CategoryID" });
+            DropIndex("dbo.Documents", new[] { "FormatID" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Uploads");
+            DropTable("dbo.Formats");
+            DropTable("dbo.Documents");
+            DropTable("dbo.Categories");
         }
     }
 }

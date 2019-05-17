@@ -15,29 +15,36 @@ namespace BookWorm.Controllers
         private BookWormContext _context;
 
         public DocumentController()
-            {
+        {
             _context = new BookWormContext();
         }
         [Authorize]
-        public ActionResult Upload ()
+        public ActionResult Upload()
         {
             return View();
         }
+
+        void GetFormatList()
+        {
+            List<Format> formats = _context.Formats.ToList();
+            SelectList formatList = new SelectList(formats, "Id", "FileFormat");
+            ViewBag.formats = formatList;
+        }
+
+        void GetCategoryList()
+        {
+            List<Category> categories = _context.Categories.ToList();
+            SelectList categoryList = new SelectList(categories, "Id", "Categories");
+            ViewBag.categories = categoryList;
+        }
+
         [Authorize]
         // GET: Document
         public ActionResult Create()
         {
-           
-            List<Format> formats = _context.Formats.ToList();
-            SelectList formatList = new SelectList(formats,"Id","FileFormat");
-            ViewBag.formats = formatList;
-         
 
-            List<Category> categories = _context.Categories.ToList();
-            SelectList categoryList = new SelectList(categories, "Id", "Categories");
-            ViewBag.categories = categoryList;
-
-
+            GetFormatList();
+            GetCategoryList();
 
             return View(new NewDocumentViewModel());
         }
@@ -49,40 +56,15 @@ namespace BookWorm.Controllers
         {
             if (!ModelState.IsValid)
             {
-                List<Format> formats = _context.Formats.ToList();
-                SelectList formatList = new SelectList(formats, "Id", "FileFormat");
-                ViewBag.formats = formatList;
+                GetFormatList();
+                GetCategoryList();
 
-
-                List<Category> categories = _context.Categories.ToList();
-                SelectList categoryList = new SelectList(categories, "Id", "Categories");
-                ViewBag.categories = categoryList;
-               
                 return View("Create", viewModel);
             }
 
-           
+            var FormatId = _context.Formats.Single(t => t.Id == viewModel.FormatId).Id;
+            var CategoryId = _context.Categories.Single(c => c.Id == viewModel.CategoryId).Id;
 
-
-            var Format = _context.Formats.Single(t => t.Id == viewModel.FormatId);
-            var Category = _context.Categories.Single(c => c.Id == viewModel.CategoryId);
-
-
-
-            var document = new Documents
-            {
-                Name = viewModel.Name,
-                Author = viewModel.Author,
-                Excerpt = viewModel.Excerpt,
-                Format = Format,
-                Category = Category,
-                Uploads = new Upload
-                {
-                    ImageName = viewModel.ImageName,
-                    ImagePath = viewModel.ImagePath
-                }
-                
-            };
 
             foreach (var file in docs)
             {
@@ -92,7 +74,30 @@ namespace BookWorm.Controllers
                         string path = Path.Combine(Server.MapPath("~/Uploads"),
                                                    Path.GetFileName(file.FileName));
                         file.SaveAs(path);
+
                         ViewBag.Message = "File uploaded successfully";
+
+                        var upload = new Upload
+                        {
+                            ImageName = file.FileName,
+                            ImagePath = path
+                        };
+                        _context.Uploads.Add(upload);
+
+                        var document = new Documents
+                        {
+                            Name = viewModel.Name,
+                            Author = viewModel.Author,
+                            Excerpt = viewModel.Excerpt,
+                            FormatID = FormatId,
+                            CategoryID = CategoryId,
+                            UploadID = upload.UploadID
+
+                        };
+
+                        _context.Documents.Add(document);
+                        _context.SaveChanges();
+
                     }
                     catch (Exception ex)
                     {
@@ -103,12 +108,8 @@ namespace BookWorm.Controllers
                 {
                     ViewBag.Message = "You have not specified a file.";
                 }
+
             }
-
-
-
-            _context.Documents.Add(document);
-            _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
         }
@@ -121,13 +122,13 @@ namespace BookWorm.Controllers
         public ActionResult UploadsPartialView(List<HttpPostedFileBase> docs)
         {
             //var file = docs.FirstOrDefault();
-           
+
 
             return View();
 
         }
-        
-      
+
+
     }
 
 }

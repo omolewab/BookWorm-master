@@ -2,7 +2,16 @@
 {
     public class Category
     {
-        public byte Id { get; set; }
+        public int Id { get; set; }
         public string Categories { get; set; }
+
+        public Category(int id, string FileFormat)
+        {
+            this.Id = id;
+            this.Categories = Categories;
+        }
+        public Category()
+        {
+        }
     }
 }
