@@ -114,19 +114,72 @@ namespace BookWorm.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult UploadsPartialView()
+        public ActionResult Edit(int Id)
         {
-            return PartialView("UploadsPartialView");
-        }
-        [HttpPost]
-        public ActionResult UploadsPartialView(List<HttpPostedFileBase> docs)
-        {
-            //var file = docs.FirstOrDefault();
-
+            ViewBag.id = Id;
 
             return View();
+        }
+
+        public ActionResult EditDocumentPartial(int Id)
+        {
+
+            TempData["id"] = Id;
+            Documents document = _context.Documents.
+                Include(g => g.Category)
+                .Include(f => f.Format)
+                .SingleOrDefault(p => p.DocumentsID == Id);
+
+
+            
+            var model_ = new NewDocumentViewModel
+            {
+                Name = document.Name,
+                Author = document.Author,
+                Excerpt = document.Excerpt,
+                FormatId = document.Format.Id,
+                CategoryId = document.Category.Id,
+            };
+            return PartialView(model_);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditDocumentPartial(NewDocumentViewModel viewModel)
+        {
+            var pId = (int)TempData["id"];
+            Documents document = _context.Documents.SingleOrDefault(r => r.DocumentsID == pId);
+
+
+            if (ModelState.IsValid)
+            {
+                document.Name = viewModel.Name;
+                document.Author = viewModel.Author;
+                document.Excerpt = viewModel.Excerpt;
+                document.Format = _context.Formats.FirstOrDefault(f => f.Id == viewModel.FormatId);
+                document.Category = _context.Categories.FirstOrDefault(c => c.Id == viewModel.CategoryId);
+
+                _context.Entry(document).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Home");
 
         }
+
+        public ActionResult Delete(int? Id)
+        {
+            ViewBag.id = Id;
+            Documents document = _context.Documents
+                .Include(p => p.Category)
+                .Include(p => p.Format)
+                .SingleOrDefault(p => p.DocumentsID == Id);
+            _context.Documents.Remove(document);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+
+        }
+
 
 
     }
@@ -146,3 +199,16 @@ namespace BookWorm.Controllers
 //    Categories = _context.Categories.ToList()
 //};
 //permit a shortcut
+//public ActionResult UploadsPartialView()
+//{
+//    return PartialView("UploadsPartialView");
+//}
+//[HttpPost]
+//public ActionResult UploadsPartialView(List<HttpPostedFileBase> docs)
+//{
+//    //var file = docs.FirstOrDefault();
+
+
+//    return View();
+
+//}

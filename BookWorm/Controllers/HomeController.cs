@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookWorm.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,24 @@ namespace BookWorm.Controllers
 {
     public class HomeController : Controller
     {
+        private BookWormContext _context;
+
+        //Instance of the Database (_context)
+        public HomeController()
+        {
+            _context = new BookWormContext();
+        }
         public ActionResult Index()
         {
-            return View();
+            ViewBag.IsHome = true;
+            if (User != null && User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("AfterLogin");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Category()
@@ -35,6 +51,21 @@ namespace BookWorm.Controllers
             var model = q;
 
             return View(model);
+        }
+        public ActionResult AfterLogin()
+        {
+            var AppUser = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            var newDocuments = _context.Documents;
+
+
+            return View(newDocuments);
+        }
+
+        public ActionResult Edit(int Id)
+        {
+
+            return View();
+
         }
     }
 }
