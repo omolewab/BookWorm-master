@@ -4,24 +4,26 @@
     ViewBag.Title = "Home Page";
 }
 
-<ul class="projects">
+<ul class="documents">
     @foreach (var document in Model)
     {
         <li>
             <span class="Documentdetails">
                 @document.Name
-                
+            </span>
+            <span class=" Documentexcerpt">
                 @document.Excerpt
-                </span>
+            </span>
+            <br />
 
-                <div class="btn-link right">
-                    @Html.ActionLink("Tweak", "EditDocumentPartial", "Document", new { Id = document.DocumentsID}, null)
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
-                <div class="btn-link right">
-                    @Html.ActionLink("Discard", "Delete", "Document", new { Id = document.DocumentsID }, null)
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
+            <span class="btn-link right">
+                @Html.ActionLink("Tweak", "EditDocumentPartial", "Document", new { Id = document.DocumentsID }, null)
+                &nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="btn-link right">
+                @Html.ActionLink("Discard", "Delete", "Document", new { Id = document.DocumentsID }, null)
+                &nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
         </li>
     }
 </ul>
@@ -29,22 +31,7 @@
 @section scripts
 {
     <script>
-                //$(document).ready(function () {
-                //    $(".js-toggle-documents").click(function (e) {
-                //        var button = $(e.target);
-                //        $.post("/api/documents", { "DocumentsID": button.attr("data-documents-id") })
-                //            .done(function () {
-                //                button
-                //                    .removeClass("btn-default")
-                //                    .addClass("btn-info")
-                //                    .text("Added!");
-                //            })
-                //            .fail(function () {
-                //                alert("Something Went Wrong!")
-                //            })
-                //    });
-                //});
-
+               
     </script>
 }
 

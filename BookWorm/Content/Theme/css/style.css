@@ -22,6 +22,8 @@ body {
 	line-height:1.6em;
 	color:#fff;
 	background-color:#fff;
+	padding-top:70px;
+	padding-bottom:20px;
 }
 
 a:hover {
@@ -631,20 +633,20 @@ footer .widget ul li a {
 .jumbotron p {
 	margin-bottom: 15px;
 	font-size: 18px;
-	font-weight: 100;
+	font-weight:500;
 }
 
 .jumbotron h1, .jumbotron .h1 {
-	font-size:55px;
-	color: black;
+	font-size: 55px;
+	color: #1E7B85;
 }
 
 h2, .h2 {
 	font-size: 20px;
-	color: black;
+	color: #1E7B85;
 }
 .btn-default {
-	color: #50c0e9;
+	color: #1E7B85;
 	background-color: #f8f8f8;
 }
 
@@ -656,3 +658,112 @@ body {
 	color: black;
 	background-color: #fff;
 }
+
+h1, .h1, h2, .h2, h3, .h3 {
+	margin-top: auto;
+	margin-bottom: 10px;
+}
+
+.recent button.btn-primarys h3 {
+	padding: 10px;
+	font-size: 30px;
+	text-decoration: none;
+	color: #1E7B85;
+}
+
+.thumnails h4 {
+	color: #1E7B85;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.ficon i {
+	color: #1E7B85;
+}
+
+	.form-group {
+	margin-bottom: 20px;
+}
+
+a {
+	color: #1E7B85;
+	text-decoration: none;
+}
+
+.btn > li .btn-link {
+	font-size: large;
+}
+
+.widgetheading {
+	width: 100%;
+	padding: 0;
+	color: #1E7B85;
+	margin-bottom: 30px;
+}
+
+.widgetheading {
+	width: 100%;
+	padding: 0;
+	color: #1E7B85;
+	margin-bottom: 30px;
+}
+
+ul.social-network li a {
+	color: #1E7B85;
+}
+
+a {
+	color: #1E7B85;
+	text-decoration: none;
+}
+/* Navbar */
+.navbar-inverse {
+	background-color: #1E7B85;
+	border-color: #1E7B85;
+	box-shadow: black;
+}
+.navbar-inverse .navbar-brand {
+		color: white;
+}
+
+.nav > li {
+	position: relative;
+	display: block;
+	color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: white;
+}
+/* Page-level styles*/
+	.documents {
+		list-style: none;
+	}
+
+	.documents > li {
+		position: relative;
+		margin-bottom: 30px;
+	}
+
+	.documents > li .Documentdetails {
+			font-weight: bold;
+			font-size:large;
+			display: block;
+	}
+
+	.documents > li .Documentexcerpt{
+			font-size:small;
+	}
+
+
+
+
+
+
+  /*.documents > li .Documentexcerpt 
+  {
+   position: absolute;
+   top: 0;         
+   left: 120px;
+   display: block;
+  }*/
