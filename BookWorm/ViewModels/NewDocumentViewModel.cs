@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace BookWorm.ViewModels
 {
@@ -13,10 +14,10 @@ namespace BookWorm.ViewModels
         public string Name { get; set; }
        // [Required]
         public string Author { get; set; }
-        public int FormatId { get; set; }
+        public int FormatID { get; set; }
         public IEnumerable<Format> Formats { get; set; }
         public string Excerpt { get; set; }
-        public int CategoryId { get; set; }
+        public int CategoryID { get; set; }
         public byte ImageId { get; set; }
         public string ImagePath { get; set; }
         public string ImageName { get; set; }

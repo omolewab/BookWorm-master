@@ -62,8 +62,8 @@ namespace BookWorm.Controllers
                 return View("Create", viewModel);
             }
 
-            var FormatId = _context.Formats.Single(t => t.Id == viewModel.FormatId).Id;
-            var CategoryId = _context.Categories.Single(c => c.Id == viewModel.CategoryId).Id;
+            var FormatId = _context.Formats.Single(t => t.Id == viewModel.FormatID).Id;
+            var CategoryId = _context.Categories.Single(c => c.Id == viewModel.CategoryID).Id;
 
 
             foreach (var file in docs)
@@ -111,7 +111,7 @@ namespace BookWorm.Controllers
 
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("AfterLogin", "Home");
         }
 
         public ActionResult Edit(int Id)
@@ -121,7 +121,7 @@ namespace BookWorm.Controllers
             return View();
         }
 
-        public ActionResult EditDocumentPartial(int Id)
+        public ActionResult EditDocument(int Id)
         {
 
             TempData["id"] = Id;
@@ -137,14 +137,14 @@ namespace BookWorm.Controllers
                 Name = document.Name,
                 Author = document.Author,
                 Excerpt = document.Excerpt,
-                FormatId = document.Format.Id,
-                CategoryId = document.Category.Id,
+                FormatID = document.Format.Id,
+                CategoryID = document.Category.Id,
             };
             return PartialView(model_);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditDocumentPartial(NewDocumentViewModel viewModel)
+        public ActionResult EditDocument(NewDocumentViewModel viewModel)
         {
             var pId = (int)TempData["id"];
             Documents document = _context.Documents.SingleOrDefault(r => r.DocumentsID == pId);
@@ -155,32 +155,60 @@ namespace BookWorm.Controllers
                 document.Name = viewModel.Name;
                 document.Author = viewModel.Author;
                 document.Excerpt = viewModel.Excerpt;
-                document.Format = _context.Formats.FirstOrDefault(f => f.Id == viewModel.FormatId);
-                document.Category = _context.Categories.FirstOrDefault(c => c.Id == viewModel.CategoryId);
+                document.Format = _context.Formats.FirstOrDefault(f => f.Id == viewModel.FormatID);
+                document.Category = _context.Categories.FirstOrDefault(c => c.Id == viewModel.CategoryID);
 
                 _context.Entry(document).State = System.Data.Entity.EntityState.Modified;
                 _context.SaveChanges();
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("AfterLogin", "Home");
 
         }
 
-        public ActionResult Delete(int? Id)
+        public ActionResult Delete(int? Id, int? ID)
         {
             ViewBag.id = Id;
+
             Documents document = _context.Documents
                 .Include(p => p.Category)
                 .Include(p => p.Format)
+                .Include(d => d.Uploads)
                 .SingleOrDefault(p => p.DocumentsID == Id);
+
             _context.Documents.Remove(document);
+
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("AfterLogin", "Home");
 
         }
 
+        //public ActionResult Download()
+        //{
+        //    string path = Server.MapPath("~/Uploads/");
+        //    DirectoryInfo directoryInfo = new DirectoryInfo(path);
+        //    FileInfo[] file = directoryInfo.GetFiles("*.*");
+        //    List<string> list = new List<string>(file.Length);
+        //    foreach (var document in file)
+        //    {
+        //        list.Add(document.Name);
+        //    }
+        //    return View(list);
+        //}
 
+        //public ActionResult DownloadDocument(string filename)
+        //{
+        //    if (Path.GetExtension(filename) == ".pdf")
+        //    {
+        //        string ImagePath = Path.Combine(Server.MapPath("~/Uploads/"), filename);
+        //        return File(ImagePath, "Documents/pdf");
+        //    }
+        //    else
+        //    {
+        //        return new HttpStatusCodeResult(System.Net.HttpStatusCode.Forbidden);
+        //    }
+        //}
 
     }
 
