@@ -52,7 +52,7 @@ namespace BookWorm.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(NewDocumentViewModel viewModel, List<HttpPostedFileBase> docs)
+        public ActionResult Create(NewDocumentViewModel viewModel, List<HttpPostedFileBase> docs, List<HttpFileCollectionBase>thumbnails)
         {
             if (!ModelState.IsValid)
             {
@@ -84,6 +84,16 @@ namespace BookWorm.Controllers
                         };
                         _context.Uploads.Add(upload);
 
+                        string thumb = Path.Combine(Server.MapPath("~/Thumbnails"), Path.GetFileName(file.FileName));
+
+                        file.SaveAs(thumb);
+
+                        var Thumb = new Upload
+                        {
+                            ThumbnailPath = thumb
+                        };
+                        _context.Uploads.Add(Thumb);
+
                         var document = new Documents
                         {
                             Name = viewModel.Name,
@@ -112,6 +122,22 @@ namespace BookWorm.Controllers
             }
 
             return RedirectToAction("AfterLogin", "Home");
+        }
+     
+        public ActionResult AddDocImagePartial(int Id)
+        {
+            return View();
+        }
+        public ActionResult AddDocImagePartial (NewDocumentViewModel format, List<HttpFileCollectionBase> docsImage)
+        {
+
+                int TId = format.FormatID;
+                if (ModelState.IsValid)
+                {
+                   
+                    _context.SaveChanges();
+                }
+            return View();
         }
 
         public ActionResult Edit(int Id)

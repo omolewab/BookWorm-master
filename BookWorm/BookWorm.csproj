@@ -204,6 +204,10 @@
     <Compile Include="Migrations\201905161213539_PopulateFormatsTable.Designer.cs">
       <DependentUpon>201905161213539_PopulateFormatsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905281319085_updateUploadsTable.cs" />
+    <Compile Include="Migrations\201905281319085_updateUploadsTable.Designer.cs">
+      <DependentUpon>201905281319085_updateUploadsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -412,6 +416,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Roles\" />
+    <Folder Include="Thumbnails\" />
     <Folder Include="Views\MyHome\" />
   </ItemGroup>
   <ItemGroup>
@@ -437,6 +442,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905161213539_PopulateFormatsTable.resx">
       <DependentUpon>201905161213539_PopulateFormatsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281319085_updateUploadsTable.resx">
+      <DependentUpon>201905281319085_updateUploadsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

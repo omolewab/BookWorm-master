@@ -30,8 +30,24 @@
 
 @section scripts
 {
-    <script>
-               
-    </script>
+    @*<script>
+            $('#documentUploaderButton').change(function () {
+                if ($(this).val() !== ".jpg" || $(this).val() !== ".png") {  // if its not equals to png or jpg
+                    $('#imageUploaderButton').attr('disabled', '');
+                } else {
+                    $('#imageUploaderButton').attr('disabled', 'disabled');
+                }
+            });
+
+        </script>*@
 }
 
+@*<script type="text/javascript">
+    $('#doc').change(function () {
+        if ($(this).val().contains(".jpg") || $(this).val().contains(".png")) {
+            $('#imgButton').attr('disabled', '');
+        } else {
+            $('#imageUploaderButton').attr('disabled', 'disabled');
+        }
+    });
+</script>*@

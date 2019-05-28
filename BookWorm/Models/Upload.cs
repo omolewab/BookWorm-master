@@ -11,8 +11,7 @@ namespace BookWorm.Models
         public int UploadID { get; set; }
         public string ImagePath { get; set; }
         public string ImageName { get; set; }
-        //[NotMapped]
-        //public HttpPostedFileBase ImageFile { get; set; }
+        public string ThumbnailPath { get; set; }
         }
 
 
