@@ -213,6 +213,7 @@
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Format.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\Thumbnail.cs" />
     <Compile Include="Models\Upload.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\BookWormContext.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DocumentViewModel.cs" />
     <Compile Include="ViewModels\NewDocumentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

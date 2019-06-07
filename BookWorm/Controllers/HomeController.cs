@@ -1,4 +1,5 @@
 ﻿using BookWorm.Models;
+using BookWorm.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,11 +55,31 @@ namespace BookWorm.Controllers
         }
         public ActionResult AfterLogin()
         {
+            List<DocumentViewModel> documentVMs = new List<DocumentViewModel>();
             var AppUser = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-            var newDocuments = _context.Documents;
+            var newDocuments = _context.Documents.ToList();
+            var newUploads = _context.Uploads.ToList();
 
 
-            return View(newDocuments);
+            string uri = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Authority);
+
+
+            foreach (var doc in newDocuments)
+            {
+                DocumentViewModel viewModel = new DocumentViewModel
+                {
+                    Name = doc.Name,
+                    Excerpt = doc.Excerpt,
+                    ThumbnailUrl = doc.Uploads.ThumbnailPath
+                };
+
+                documentVMs.Add(viewModel);
+                string tni = (uri + "/Thumbnails/" + doc.Substring(doc.LastIndexOf("\\") + 1));
+            }
+            
+
+
+            return View(documentVMs);
         }
 
         public ActionResult Edit(int Id)

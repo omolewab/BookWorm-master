@@ -66,34 +66,30 @@ namespace BookWorm.Controllers
             var CategoryId = _context.Categories.Single(c => c.Id == viewModel.CategoryID).Id;
 
 
-            foreach (var file in docs)
-            {
+            //foreach (var file in docs)
+            //{
+            var file = docs[0];
+            var thumbnail = docs[1];
                 if (file != null && file.ContentLength > 0)
                     try
                     {
                         string path = Path.Combine(Server.MapPath("~/Uploads"),
                                                    Path.GetFileName(file.FileName));
                         file.SaveAs(path);
+                
+                        string thumb = Path.Combine(Server.MapPath("~/Thumbnails"), 
+                                                    Path.GetFileName(thumbnail.FileName));
 
-                        ViewBag.Message = "File uploaded successfully";
+                        thumbnail.SaveAs(thumb);
 
                         var upload = new Upload
                         {
                             ImageName = file.FileName,
-                            ImagePath = path
-                        };
-                        _context.Uploads.Add(upload);
-
-                        string thumb = Path.Combine(Server.MapPath("~/Thumbnails"), Path.GetFileName(file.FileName));
-
-                        file.SaveAs(thumb);
-
-                        var Thumb = new Upload
-                        {
+                            ImagePath = path,
                             ThumbnailPath = thumb
                         };
-                        _context.Uploads.Add(Thumb);
-
+                        _context.Uploads.Add(upload);
+                    
                         var document = new Documents
                         {
                             Name = viewModel.Name,
@@ -119,27 +115,12 @@ namespace BookWorm.Controllers
                     ViewBag.Message = "You have not specified a file.";
                 }
 
-            }
+            //}
 
             return RedirectToAction("AfterLogin", "Home");
         }
-     
-        public ActionResult AddDocImagePartial(int Id)
-        {
-            return View();
-        }
-        public ActionResult AddDocImagePartial (NewDocumentViewModel format, List<HttpFileCollectionBase> docsImage)
-        {
 
-                int TId = format.FormatID;
-                if (ModelState.IsValid)
-                {
-                   
-                    _context.SaveChanges();
-                }
-            return View();
-        }
-
+      
         public ActionResult Edit(int Id)
         {
             ViewBag.id = Id;

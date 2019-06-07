@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookWorm.Models.Documents>
+﻿@model IEnumerable<BookWorm.ViewModels.DocumentViewModel>
 
 @{
     ViewBag.Title = "Home Page";
@@ -16,6 +16,7 @@
             </span>
             <br />
 
+
             <span class="btn-link right">
                 @Html.ActionLink("Tweak", "Edit", "Document", new { Id = document.DocumentsID }, null)
                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -27,6 +28,8 @@
         </li>
     }
 </ul>
+
+   
 
 @section scripts
 {
