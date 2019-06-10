@@ -7,6 +7,7 @@ namespace BookWorm.ViewModels
 {
     public class DocumentViewModel
     {
+        public int DocumentsID { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }
         public string Excerpt { get; set; }

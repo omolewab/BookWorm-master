@@ -173,7 +173,7 @@ namespace BookWorm.Controllers
 
         }
 
-        public ActionResult Delete(int? Id, int? ID)
+        public ActionResult Delete(int? Id)
         {
             ViewBag.id = Id;
 

@@ -2,6 +2,7 @@
 using BookWorm.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -62,22 +63,24 @@ namespace BookWorm.Controllers
 
 
             string uri = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Authority);
+            var doc = new List<string>();
 
 
-            foreach (var doc in newDocuments)
+            foreach (var docs in newDocuments)
             {
                 DocumentViewModel viewModel = new DocumentViewModel
                 {
-                    Name = doc.Name,
-                    Excerpt = doc.Excerpt,
-                    ThumbnailUrl = doc.Uploads.ThumbnailPath
+                    Name = docs.Name,
+                    Excerpt = docs.Excerpt,
+                    ThumbnailUrl = docs.Uploads.ThumbnailPath
                 };
-
+                doc.Add(uri + "Thumbnails" + docs.Uploads.ThumbnailPath);
+                    
                 documentVMs.Add(viewModel);
-                string tni = (uri + "/Thumbnails/" + doc.Substring(doc.LastIndexOf("\\") + 1));
+
+
             }
             
-
 
             return View(documentVMs);
         }
@@ -90,3 +93,5 @@ namespace BookWorm.Controllers
         }
     }
 }
+
+//string tni = (uri + "/Thumbnails/" + doc.Substring(doc.LastIndexOf("\\") + 1));
