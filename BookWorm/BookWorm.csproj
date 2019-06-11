@@ -67,6 +67,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.2.5\lib\net45\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -307,6 +310,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Thumbnails\%40inidimaokojie.jpg" />
+    <Content Include="Thumbnails\1.png" />
     <Content Include="Uploads\The Santori %281%29.png" />
     <Content Include="Uploads\The Santori.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -418,7 +423,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Roles\" />
-    <Folder Include="Thumbnails\" />
     <Folder Include="Views\MyHome\" />
   </ItemGroup>
   <ItemGroup>

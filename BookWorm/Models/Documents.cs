@@ -20,14 +20,3 @@ namespace BookWorm.Models
     }
 }
 
-//[ForeignKey("Format")]
-//public int FormatID { get; set; }
-
-//[ForeignKey("Category")]
-//public int CategoryID { get; set; }
-
-//[ForeignKey("Uploads")]
-//public int UploadID { get; set; }
-
-//public string ImageName { get; set; }
-//public  string ImagePath { get; set; }

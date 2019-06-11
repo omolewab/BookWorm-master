@@ -58,30 +58,26 @@ namespace BookWorm.Controllers
         {
             List<DocumentViewModel> documentVMs = new List<DocumentViewModel>();
             var AppUser = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-            var newDocuments = _context.Documents.ToList();
-            var newUploads = _context.Uploads.ToList();
+            var newDocuments = _context.Documents.Include("Uploads").ToList();
 
 
             string uri = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Authority);
-            var doc = new List<string>();
-
+            
 
             foreach (var docs in newDocuments)
             {
+                var thumbNail = "~/Thumbnails/" + docs.Uploads.ThumbnailPath.Substring(docs.Uploads.ThumbnailPath.LastIndexOf("\\") + 1);
+
                 DocumentViewModel viewModel = new DocumentViewModel
                 {
                     Name = docs.Name,
                     Excerpt = docs.Excerpt,
-                    ThumbnailUrl = docs.Uploads.ThumbnailPath
+                    ThumbnailUrl = thumbNail
                 };
-                doc.Add(uri + "Thumbnails" + docs.Uploads.ThumbnailPath);
                     
                 documentVMs.Add(viewModel);
-
-
             }
             
-
             return View(documentVMs);
         }
 
