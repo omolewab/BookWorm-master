@@ -8,26 +8,48 @@
     @foreach (var document in Model)
     {
         <li>
-            <span class="Documentdetails">
-                @document.Name
-            </span>
-            <span class=" Documentexcerpt">
-                @document.Excerpt
-            </span>
-            <span class="DocumentThumbnail">
-               <img src= "@Url.Content(document.ThumbnailUrl)" />
-            </span>
-            <br />
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-1">
+                        <span class="DocumentThumbnail">
+                            <img src="@Url.Content(document.ThumbnailUrl)" style="width:70px; height:60px" />
+                        </span>
+                    </div>
+
+                    <div class="col-sm-11">
+                        <span class="Documentdetails">
+                            @document.Name
+                        </span>
+
+                        <span class=" Documentexcerpt">
+                            @document.Excerpt
+                        </span>
+
+                        <div>
+                            <span class="btn-link right">
+                                @Html.ActionLink("Tweak", "Edit", "Document", new { Id = document.DocumentsID }, null)
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
 
 
-            <span class="btn-link right">
-                @Html.ActionLink("Tweak", "Edit", "Document", new { Id = document.DocumentsID }, null)
-                &nbsp;&nbsp;&nbsp;&nbsp;
-            </span>
-            <span class="btn-link right">
-                @Html.ActionLink("Discard", "Delete", "Document", new { Id = document.DocumentsID }, null)
-                &nbsp;&nbsp;&nbsp;&nbsp;
-            </span>
+
+                            <span class="btn-link right">
+                                @Html.ActionLink("Discard", "Delete", "Document", new { Id = document.DocumentsID }, null)
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+
+
+                            <span class="btn-link right">
+                                <a href="@Url.Content(document.DownloadUrl)"> Can I have you? </a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                        </div>
+                       
+                    </div>
+                </div>
+                
+            </div>
         </li>
     }
 </ul>

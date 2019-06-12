@@ -12,5 +12,7 @@ namespace BookWorm.ViewModels
         public string Author { get; set; }
         public string Excerpt { get; set; }
         public string ThumbnailUrl { get; set; }
+        public string DownloadUrl { get; set; }
+
     }
 }

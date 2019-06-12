@@ -1,11 +1,17 @@
-﻿@model BookWorm.Controllers.HomeController
+﻿@model IEnumerable<BookWorm.ViewModels.CategoryViewModel>
 
-<h3>@ViewBag.Message</h3>
-<br />
+<ul class=" categories">
+    @foreach (var category in Model)
+    {
+        <li>
+            <span class="CategoryDetails">
+                @category.Category
+            </span>
+        </li>
+
+    }
+</ul>
 
 
-<form id="frmsearch" action="~/Catalog/Search" method="get">
-    <input id="q" name="q" placeholder="Title/Author/Genre" style="width:275px;" />
-    <input id="submit" name="submit" type="submit" style="font-weight:bold;" value="Search" />
-</form>
+
 

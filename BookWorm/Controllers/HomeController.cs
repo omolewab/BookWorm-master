@@ -33,9 +33,10 @@ namespace BookWorm.Controllers
 
         public ActionResult Category()
         {
-            ViewBag.Message = "Search and Browse Documents";
+            List<CategoryViewModel> categoryVMs = new List<CategoryViewModel>();
+            var newCategory = _context.Categories.ToList();
 
-            return View();
+            return View(categoryVMs);
         }
         public ActionResult MyList()
         {
@@ -52,8 +53,32 @@ namespace BookWorm.Controllers
             //q = "few random words" (no need to remove '+' signs) 
             var model = q;
 
-            return View(model);
+            List<DocumentViewModel> documentVMs = new List<DocumentViewModel>();
+            var AppUser = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            var newDocuments = _context.Documents.Include("Uploads").Where(d => d.Author.Contains(q)||d.Name.Contains(q)).ToList();
+
+
+            foreach (var docs in newDocuments)
+            {
+                var thumbNail = "~/Thumbnails/" + docs.Uploads.ThumbnailPath.Substring(docs.Uploads.ThumbnailPath.LastIndexOf("\\") + 1);
+                var download = "~/Uploads/" + docs.Uploads.ImagePath.Substring(docs.Uploads.ImagePath.LastIndexOf("\\") + 1);
+
+
+                DocumentViewModel viewModel = new DocumentViewModel
+                {
+                    DocumentsID = docs.DocumentsID,
+                    Name = docs.Name,
+                    Excerpt = docs.Excerpt,
+                    ThumbnailUrl = thumbNail,
+                    DownloadUrl = download
+                };
+
+                documentVMs.Add(viewModel);
+            }
+
+            return View(documentVMs);
         }
+
         public ActionResult AfterLogin()
         {
             List<DocumentViewModel> documentVMs = new List<DocumentViewModel>();
@@ -61,18 +86,19 @@ namespace BookWorm.Controllers
             var newDocuments = _context.Documents.Include("Uploads").ToList();
 
 
-            string uri = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Authority);
-            
-
             foreach (var docs in newDocuments)
             {
                 var thumbNail = "~/Thumbnails/" + docs.Uploads.ThumbnailPath.Substring(docs.Uploads.ThumbnailPath.LastIndexOf("\\") + 1);
+                var download = "~/Uploads/" + docs.Uploads.ImagePath.Substring(docs.Uploads.ImagePath.LastIndexOf("\\") + 1);
+
 
                 DocumentViewModel viewModel = new DocumentViewModel
                 {
+                    DocumentsID = docs.DocumentsID,
                     Name = docs.Name,
                     Excerpt = docs.Excerpt,
-                    ThumbnailUrl = thumbNail
+                    ThumbnailUrl = thumbNail,
+                    DownloadUrl = download
                 };
                     
                 documentVMs.Add(viewModel);

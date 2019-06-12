@@ -124,6 +124,8 @@ namespace BookWorm.Controllers
         public ActionResult Edit(int Id)
         {
             ViewBag.id = Id;
+            GetFormatList();
+            GetCategoryList();
 
             return View();
         }
@@ -183,6 +185,7 @@ namespace BookWorm.Controllers
                 .Include(d => d.Uploads)
                 .SingleOrDefault(p => p.DocumentsID == Id);
 
+            _context.Uploads.Remove(document.Uploads);
             _context.Documents.Remove(document);
 
             _context.SaveChanges();
