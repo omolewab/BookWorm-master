@@ -120,7 +120,7 @@ namespace BookWorm.Controllers
             return RedirectToAction("AfterLogin", "Home");
         }
 
-      
+      [Authorize]
         public ActionResult Edit(int Id)
         {
             ViewBag.id = Id;
@@ -129,7 +129,7 @@ namespace BookWorm.Controllers
 
             return View();
         }
-
+        [Authorize]
         public ActionResult EditDocument(int Id)
         {
 
@@ -151,6 +151,8 @@ namespace BookWorm.Controllers
             };
             return PartialView(model_);
         }
+
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditDocument(NewDocumentViewModel viewModel)
@@ -174,7 +176,8 @@ namespace BookWorm.Controllers
             return RedirectToAction("AfterLogin", "Home");
 
         }
-
+        
+        [Authorize]
         public ActionResult Delete(int? Id)
         {
             ViewBag.id = Id;

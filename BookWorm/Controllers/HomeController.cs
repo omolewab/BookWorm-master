@@ -25,17 +25,28 @@ namespace BookWorm.Controllers
             {
                 return RedirectToAction("AfterLogin");
             }
-            else
+            else 
             {
                 return View();
             }
         }
+
+
 
         public ActionResult Category()
         {
             List<CategoryViewModel> categoryVMs = new List<CategoryViewModel>();
             var newCategory = _context.Categories.ToList();
 
+            foreach (var catry in newCategory)
+            {
+                CategoryViewModel categoryView = new CategoryViewModel
+                {
+                    Category = catry.Categories
+                };
+
+                categoryVMs.Add(categoryView);
+            }
             return View(categoryVMs);
         }
         public ActionResult MyList()
@@ -106,6 +117,9 @@ namespace BookWorm.Controllers
             
             return View(documentVMs);
         }
+
+      
+        
 
         public ActionResult Edit(int Id)
         {

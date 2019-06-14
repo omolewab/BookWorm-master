@@ -26,7 +26,10 @@
                             @document.Excerpt
                         </span>
 
+                        
                         <div>
+                            @if (Context.User.IsInRole("Admin"))
+                            {
                             <span class="btn-link right">
                                 @Html.ActionLink("Tweak", "Edit", "Document", new { Id = document.DocumentsID }, null)
                                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -35,13 +38,13 @@
 
 
                             <span class="btn-link right">
-                                @Html.ActionLink("Discard", "Delete", "Document", new { Id = document.DocumentsID }, null)
+                                @Html.ActionLink("Remove", "Delete", "Document", new { Id = document.DocumentsID }, null)
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                             </span>
-
+                            }
 
                             <span class="btn-link right">
-                                <a href="@Url.Content(document.DownloadUrl)"> Can I have you? </a>
+                                <a href="@Url.Content(document.DownloadUrl)"> Download </a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                             </span>
                         </div>

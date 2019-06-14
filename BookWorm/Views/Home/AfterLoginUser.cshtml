@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BookWorm.ViewModels.DocumentViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<ul class="documents">
+    @foreach (var document in Model)
+    {
+        <li>
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-1">
+                        <span class="DocumentThumbnail">
+                            <img src="@Url.Content(document.ThumbnailUrl)" style="width:70px; height:60px" />
+                        </span>
+                    </div>
+
+                    <div class="col-sm-11">
+                        <span class="Documentdetails">
+                            @document.Name
+                        </span>
+
+                        <span class=" Documentexcerpt">
+                            @document.Excerpt
+                        </span>
+
+
+                        <div>
+                            <span class="btn-link right">
+                                <a href="@Url.Content(document.DownloadUrl)"> Download </a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </li>
+    }
+</ul>
+
+

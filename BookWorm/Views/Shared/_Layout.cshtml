@@ -46,6 +46,7 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
+
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Categories", "Category", "Home")</li>
 
@@ -55,14 +56,7 @@
                                 <li>@Html.ActionLink("My List", "MyList", "Home")</li>
                                 <li>@Html.ActionLink("Role", "Index", "Role")</li>
                                 <li>@Html.ActionLink("Upload", "Upload", "Document")</li>
-
                             }
-                            <li>
-                                <form id="frmsearch" action="~/Document/Search" method="get">
-                                    <input id="q" name="q" placeholder="Title/Author" style="width:275px;" />
-                                    <input id="submit" name="submit" type="submit" style="font-weight:bold;" value="Search" />
-                                </form>
-                            </li>
                             @if (Context.User.IsInRole("Registered"))
                             {
 
