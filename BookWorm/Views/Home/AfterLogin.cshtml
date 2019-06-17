@@ -30,23 +30,26 @@
                         <div>
                             @if (Context.User.IsInRole("Admin"))
                             {
-                            <span class="btn-link right">
-                                @Html.ActionLink("Tweak", "Edit", "Document", new { Id = document.DocumentsID }, null)
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                            </span>
+                                <span class="btn-link right">
+                                    @Html.ActionLink("Tweak", "Edit", "Document", new { Id = document.DocumentsID }, null)
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                </span>
 
 
 
-                            <span class="btn-link right">
-                                @Html.ActionLink("Remove", "Delete", "Document", new { Id = document.DocumentsID }, null)
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                            </span>
+                                <span class="btn-link right">
+                                    @Html.ActionLink("Remove", "Delete", "Document", new { Id = document.DocumentsID }, null)
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                </span>
                             }
 
-                            <span class="btn-link right">
-                                <a href="@Url.Content(document.DownloadUrl)"> Download </a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                            </span>
+                            @if (Context.User.IsInRole("Registered"))
+                            {
+                                <span class="btn-link right">
+                                    <a href="@Url.Content(document.DownloadUrl)"> Download </a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                </span>
+                            }
                         </div>
                        
                     </div>
