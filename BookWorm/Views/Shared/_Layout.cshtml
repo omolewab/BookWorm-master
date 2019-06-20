@@ -22,7 +22,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>@ViewBag.Title - BookWorm </title>
+        @*<title>@ViewBag.Title - BookWorm </title>*@
         @Scripts.Render("~/bundles/modernizr")
 
         <!-- Bootstrap -->
@@ -42,12 +42,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        @Html.ActionLink("BookWorm", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                           @Html.ActionLink("BookWorm", "Index", "Home", new { area = "" }, new { @class = "navbar-brand "})
+                        
+
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
 
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Categories", "Category", "Home")</li>
 
                             @if (Context.User.IsInRole("Admin"))
@@ -62,6 +63,8 @@
 
                                 <li>@Html.ActionLink("My List", "MyList", "Home")</li>
                             }
+
+                            <li>@Html.ActionLink("About","About","Home")</li>
                         </ul>
 
                         @Html.Partial("_LoginPartial")

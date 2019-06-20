@@ -279,6 +279,13 @@
     <Content Include="Content\Theme\img\Categories\1.jpg" />
     <Content Include="Content\Theme\img\Categories\2.jpg" />
     <Content Include="Content\Theme\img\Categories\3.jpg" />
+    <Content Include="Content\Theme\img\Nav.BG\bookshelf.png" />
+    <Content Include="Content\Theme\img\Nav.BG\Bookworm.png" />
+    <Content Include="Content\Theme\img\Nav.BG\build-ecommerce-banner.png.pagespeed.ce.qWQ-BoY973.png" />
+    <Content Include="Content\Theme\img\Nav.BG\imageedit_12_3414085581.png" />
+    <Content Include="Content\Theme\img\Nav.BG\kisspng-bookcase-graphic-design-book-design-books-5ac984cf630636.2799095415231561754056.jpg" />
+    <Content Include="Content\Theme\img\Nav.BG\kisspng-shelf-classic-book-bible-classic-books-5aae50ee07a4f3.5285922615213734220313.jpg" />
+    <Content Include="Content\Theme\img\Nav.BG\photo-1532012197267-da84d127e765.jpeg" />
     <Content Include="Content\Theme\img\portfolio\1.jpg" />
     <Content Include="Content\Theme\img\portfolio\10.jpg" />
     <Content Include="Content\Theme\img\portfolio\11.jpg" />
@@ -421,6 +428,7 @@
     <Content Include="Views\Home\AfterLogin.cshtml" />
     <Content Include="Views\Document\Edit.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
