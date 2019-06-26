@@ -423,6 +423,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Home\product-single.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
