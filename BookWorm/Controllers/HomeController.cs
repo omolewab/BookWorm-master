@@ -133,7 +133,12 @@ namespace BookWorm.Controllers
             return View();
         }
 
-        public ActionResult PrivacyPolicy ()
+        public ActionResult ProductSingle ()
+        {
+            return View();
+        }
+
+        public ActionResult Products()
         {
             return View();
         }

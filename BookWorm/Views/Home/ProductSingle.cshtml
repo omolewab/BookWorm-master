@@ -6,11 +6,11 @@
     <title>BookWorm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#03a6f3">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href=@Url.Content("/Content/Theme/css/bootstrap.min.css")>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/Theme/css/owl.carousel.min.css")>
+    <link rel="stylesheet" href=@Url.Content("/Content/Theme/css/styles.css")>
 </head>
 
 <body>
@@ -25,19 +25,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="navbar-item active">
-                                <a href="index.html" class="nav-link">Home</a>
+                                @Html.ActionLink("Categories", "Category", "Home", new { @class = "nav-link" })
                             </li>
                             <li class="navbar-item">
                                 <a href="shop.html" class="nav-link">Shop</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="about.html" class="nav-link">About</a>
+                                @Html.ActionLink("About", "About", "Home", new { @class = "nav-link" })
                             </li>
                             <li class="navbar-item">
                                 <a href="faq.html" class="nav-link">FAQ</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="login.html" class="nav-link">Login</a>
+                                @Html.ActionLink("Login", "Login", new { @class = "nav-link" })
                             </li>
                         </ul>
                         <div class="cart my-2 my-lg-0">
@@ -55,12 +55,6 @@
             </div>
         </div>
     </header>
-    <div class="breadcrumb">
-        <div class="container">
-            <a class="breadcrumb-item" href="index.html">Home</a>
-            <span class="breadcrumb-item active">Terms and Condition</span>
-        </div>
-    </div>
     <section class="product-sec">
         <div class="container">
             <h1>7 Day Self publish How to Write a Book</h1>
@@ -71,30 +65,30 @@
                         <!-- main slider carousel items -->
                         <div class="carousel-inner">
                             <div class="active item carousel-item" data-slide-number="0">
-                                <img src="images/product1.jpg" class="img-fluid">
+                                <img src=@Url.Content("/Content/Theme/images/product1.jpg") class="img-fluid">
                             </div>
                             <div class="item carousel-item" data-slide-number="1">
-                                <img src="images/product2.jpg" class="img-fluid">
+                                <img src=@Url.Content("/Content/Theme/images/product2.jpg") class="img-fluid">
                             </div>
                             <div class="item carousel-item" data-slide-number="2">
-                                <img src="images/product3.jpg" class="img-fluid">
+                                <img src=@Url.Content("/Content/Theme/images/product3.jpg") class="img-fluid">
                             </div>
                         </div>
                         <!-- main slider carousel nav controls -->
                         <ul class="carousel-indicators list-inline">
                             <li class="list-inline-item active">
                                 <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
-                                <img src="images/product1.jpg" class="img-fluid">
+                                <img src=@Url.Content("/Content/Theme/images/product1.jpg") class="img-fluid">
                             </a>
                             </li>
                             <li class="list-inline-item">
                                 <a id="carousel-selector-1" data-slide-to="1" data-target="#myCarousel">
-                                <img src="images/product2.jpg" class="img-fluid">
+                                <img src=@Url.Content("/Content/Theme/images/product2.jpg") class="img-fluid">
                             </a>
                             </li>
                             <li class="list-inline-item">
                                 <a id="carousel-selector-2" data-slide-to="2" data-target="#myCarousel">
-                                <img src="images/product3.jpg" class="img-fluid">
+                                <img src=@Url.Content("/Content/Theme/images/product3.jpg") class="img-fluid">
                             </a>
                             </li>
                         </ul>
@@ -134,7 +128,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="item">
-                            <img src="images/img1.jpg" alt="img">
+                            <img src=@Url.Content("/Content/Theme/images/img1.jpg") alt="img">
                             <h3>how to be a bwase</h3>
                             <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
                             <div class="hover">
@@ -144,7 +138,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="item">
-                            <img src="images/img2.jpg" alt="img">
+                            <img src=@Url.Content("/Content/Theme/images/img2.jpg") alt="img">
                             <h3>How to write a book...</h3>
                             <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
                             <span class="sale">Sale !</span>
@@ -155,7 +149,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="item">
-                            <img src="images/img3.jpg" alt="img">
+                            <img src=@Url.Content("/Content/Theme/images/img3.jpg") alt="img">
                             <h3>7-day self publish...</h3>
                             <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
                             <div class="hover">
@@ -165,7 +159,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="item">
-                            <img src="images/img4.jpg" alt="img">
+                            <img src=@Url.Content("/Content/Theme/images/img4.jpg") alt="img">
                             <h3>wendy doniger</h3>
                             <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
                             <div class="hover">
@@ -183,43 +177,26 @@
                 <div class="col-md-4">
                     <div class="address">
                         <h4>Our Address</h4>
-                        <h6>The BookStore Theme, 4th Store
-                        Beside that building, USA</h6>
+                        <h6>The BookWorm, 4th Store</h6>
                         <h6>Call : 800 1234 5678</h6>
-                        <h6>Email : info@bookstore.com</h6>
+                        <h6>Email : info@bookworm.com</h6>
                     </div>
-                    <div class="timing">
-                        <h4>Timing</h4>
-                        <h6>Mon - Fri: 7am - 10pm</h6>
-                        <h6>​​Saturday: 8am - 10pm</h6>
-                        <h6>​Sunday: 8am - 11pm</h6>
-                    </div>
+                   
                 </div>
                 <div class="col-md-3">
                     <div class="navigation">
                         <h4>Navigation</h4>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-conditions.html">Terms</a></li>
-                            <li><a href="products.html">Products</a></li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Products", "Products", "Home")</li>
                         </ul>
                     </div>
-                    <div class="navigation">
-                        <h4>Help</h4>
-                        <ul>
-                            <li><a href="">Shipping & Returns</a></li>
-                            <li><a href="privacy-policy.html">Privacy</a></li>
-                            <li><a href="faq.html">FAQ’s</a></li>
-                        </ul>
-                    </div>
+                  
                 </div>
                 <div class="col-md-5">
                     <div class="form">
                         <h3>Quick Contact us</h3>
-                        <h6>We are now offering some good discount 
-                            on selected books go and shop them</h6>
                         <form>
                             <div class="row">
                                 <div class="col-md-6">
@@ -244,25 +221,23 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h5>(C) 2017. All Rights Reserved. BookStore Wordpress Theme</h5>
+                        <h5>(C) 2019. All Rights Reserved. Omolewa</h5>
                     </div>
                     <div class="col-md-6">
                         <div class="share align-middle">
                             <span class="fb"><i class="fa fa-facebook-official"></i></span>
                             <span class="instagram"><i class="fa fa-instagram"></i></span>
                             <span class="twitter"><i class="fa fa-twitter"></i></span>
-                            <span class="pinterest"><i class="fa fa-pinterest"></i></span>
-                            <span class="google"><i class="fa fa-google-plus"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src=@Url.Content("/Content/Theme/js/jquery.min.js")></script>
+    <script src=@Url.Content("/Content/Theme/js/bootstrap.min.js")></script>
+    <script type="text/javascript" src=@Url.Content("/Content/Theme/js/owl.carousel.min.js")></script>
+    <script src=@Url.Content("/Content/Theme/js/custom.js")></script>
 </body>
 
 </html>
