@@ -47,7 +47,6 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
 
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Categories", "Category", "Home")</li>
 
                             @if (Context.User.IsInRole("Admin"))
@@ -63,8 +62,9 @@
                                 <li>@Html.ActionLink("My List", "MyList", "Home")</li>
                             }
                         </ul>
-
                         @Html.Partial("_LoginPartial")
+
+
                     </div>
 
 
@@ -80,11 +80,12 @@
         <!--about-->
         @if (isHome)
         {
+
             <div class="container">
                 <div class="about">
                     <div class="row">
                         <div class="recent">
-                            <button class="btn-primarys"><h3>Categories</h3></button>
+                            <button class="btn-primarys"><h3>About BookWorm</h3></button>
                             <hr>
                         </div>
                     </div>
@@ -110,19 +111,14 @@
                             <div class="col-lg-6">
                                 <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">
                                     <div class="thumnails">
-                                        <h4>Voluptatem accusantium doloremque</h4>
+                                        <h4>What Is BookWorm About?</h4>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
-                                            ut aliquip ex ea commodo consequat.
-                                        </p>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
-                                            ut aliquip ex ea commodo consequat.
+                                            Book Worm we are passionate about the written word and seek to share our love of reading to help create
+                                            and sustain a community of lifelong readers.
+                                            We strive to provide a hospitable and nurturing environment to encourage the healthy exchange of ideas by hosting numerous readings,
+                                            book groups, panel presentations, and on-line discussions.
                                         </p>
 
-                                        <div class="ficon">
-                                            <a href="" alt="">Learn more</a> <i class="fa fa-long-arrow-right"></i>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -132,76 +128,116 @@
             </div>
         }
         <!--/about-->
+        <br />
         @if (isHome)
-         {
+        {
             <!--start footer-->
-            <footer>
+        <footer>
+            @if (isHome)
+            {
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-3">
-                            <div class="widget">
-                                <h5 class="widgetheading">Get in touch with the Readers Community</h5>
-                                <p>
-                                    <i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891 <br>
-                                    <i class="icon-envelope-alt"></i> assist@bookworm.com
-                                </p>
+                        <div class="col-md-4">
+                            <div class="address">
+                                <h4>Our Address</h4>
+                                <h6>
+                                    BookWorm, 
+                                    SunnyVale Estate, 
+                                    Fct-Abuja
+                                </h6>
+                                <h6>Call : 81 0917 3643</h6>
+                                <h6>Email : info@bookworm.com</h6>
                             </div>
+
                         </div>
-                        <div class="col-lg-3">
-                            <div class="widget">
-                                <h5 class="widgetheading">Pages</h5>
-                                <ul class="link-list">
-                                    <li><a href="#">Press release</a></li>
-                                    <li><a href="#">Terms and conditions</a></li>
-                                    <li><a href="#">Privacy policy</a></li>
-                                    <li><a href="#">Career center</a></li>
-                                    <li><a href="#">Contact us</a></li>
+                        @*<div class="col-md-3">
+                            <div class="navigation">
+                                <h4>Navigation</h4>
+                                <ul>
+                                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Products", "Products", "Home")</li>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="container">
-                    <div class="row">
-                        <hr>
-                    </div>
-                </div>
-            </footer>
-         }
-        
-            <footer>
-                <div id="sub-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                @if (isUpload)
-                                 {
-                                    <div class="copyright">
-                                        <p>
-                                            <span>&copy; BookWorm.com</span>
-                                        </p>
-                                        <div class="credits">
-                                            Designed by Omolewa!
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form">
+                                <h3>Quick Contact us</h3>
+
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input placeholder="Name" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" placeholder="Email" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <textarea placeholder="Messege"></textarea>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button class="btn black">Alright, Submit</button>
                                         </div>
                                     </div>
-                                 }
+                                </form>
                             </div>
-                            @if (isUpload)
-                             {
-                                 <div class="col-lg-6">
-                                    <ul class="social-network">
-                                        <li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook fa-1x"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter fa-1x"></i></a></li>
-
-                                    </ul>
-                                </div>
-                             }
-                        </div>
+                        </div>*@
                     </div>
                 </div>
-            </footer>
-        
+            }
+
+            <div class="copy-right">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>(C) 2019. All Rights Reserved. Omolewa</h5>
+                        </div>
+                        @*<div class="col-md-6">
+                            <div class="share align-middle">
+                                <span class="fb"><i class="fa fa-facebook-official"></i></span>
+                                <span class="instagram"><i class="fa fa-instagram"></i></span>
+                                <span class="twitter"><i class="fa fa-twitter"></i></span>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </footer>
+        }
+
+        @*<footer>
+            <div id="sub-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @if (isUpload)
+                            {
+                                <div class="copyright">
+                                    <p>
+                                        <span>&copy; BookWorm.com</span>
+                                    </p>
+                                    <div class="credits">
+                                        Designed by Omolewa!
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        @if (isUpload)
+                        {
+                            <div class="col-lg-6">
+                                <ul class="social-network">
+                                    <li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook fa-1x"></i></a></li>
+                                    <li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter fa-1x"></i></a></li>
+
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </footer>*@
+
         <!--end footer-->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src=@Url.Content("/Content/Theme/js/jquery.js")></script>
@@ -210,8 +246,8 @@
         <script src=@Url.Content("/Content/Theme/js/responsive-slider.js")></script>
         <script src=@Url.Content("/Content/Theme/js/wow.min.js")></script>
         @*<script>
-                wow = new WOW({}).init();
-            </script>*@
+            wow = new WOW({}).init();
+        </script>*@
         @*@Scripts.Render("~/bundles/jquery")*@
         @*@Scripts.Render("~/bundles/bootstrap")*@
         @RenderSection("scripts", required: false)
